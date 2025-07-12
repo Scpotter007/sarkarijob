@@ -377,6 +377,154 @@
     }
 }
 
+/* Enhanced Print Styles */
+@media print {
+    * {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    
+    .header,
+    .search-section,
+    .search-filter-section,
+    .job-controls,
+    .jobs-sidebar,
+    .footer,
+    .nav-toggle,
+    .bookmark-btn,
+    .share-btn,
+    .social-links,
+    .notification-prompt,
+    .quick-nav {
+        display: none !important;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    .jobs-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .job-card,
+    .result-item {
+        border: 1px solid #333 !important;
+        margin-bottom: 1cm;
+        padding: 0.5cm;
+        page-break-inside: avoid;
+    }
+    
+    .job-title,
+    .result-title {
+        font-size: 14pt;
+        font-weight: bold;
+        margin-bottom: 0.3cm;
+    }
+    
+    .job-department,
+    .result-exam {
+        font-size: 11pt;
+        margin-bottom: 0.3cm;
+    }
+    
+    .job-details {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.2cm;
+        margin: 0.3cm 0;
+    }
+    
+    .job-detail {
+        font-size: 10pt;
+    }
+    
+    .job-tags {
+        margin: 0.3cm 0;
+    }
+    
+    .job-tag {
+        border: 1px solid #333 !important;
+        color: black !important;
+        background: white !important;
+        padding: 0.1cm 0.2cm;
+        margin-right: 0.2cm;
+        font-size: 9pt;
+    }
+    
+    .apply-btn,
+    .download-btn {
+        background: #333 !important;
+        color: white !important;
+        border: 1px solid #333 !important;
+        padding: 0.2cm 0.5cm;
+        margin-right: 0.3cm;
+        font-size: 10pt;
+        text-decoration: none;
+        display: inline-block;
+    }
+    
+    .apply-btn::after {
+        content: " (" attr(href) ")";
+        font-size: 8pt;
+        color: #666;
+    }
+    
+    .result-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.3cm;
+    }
+    
+    .result-date {
+        font-size: 9pt;
+        color: #666;
+    }
+    
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+    
+    .page-description {
+        font-size: 11pt;
+        margin-bottom: 0.5cm;
+    }
+    
+    /* Add page header with website info */
+    @page {
+        margin: 2cm 1.5cm;
+        @top-center {
+            content: "SarkariJob.com - Government Jobs Portal";
+            font-size: 10pt;
+            color: #666;
+        }
+        @bottom-center {
+            content: "Page " counter(page) " of " counter(pages);
+            font-size: 9pt;
+            color: #666;
+        }
+    }
+    
+    /* Ensure proper page breaks */
+    .jobs-results {
+        orphans: 2;
+        widows: 2;
+    }
+    
+    .job-card {
+        orphans: 3;
+        widows: 3;
+    }
+}
+
 /* Container query support (future-proofing) */
 @supports (container-type: inline-size) {
     .job-card {

@@ -366,6 +366,101 @@ app.get('/api/answer-keys', (req, res) => {
   });
 });
 
+// Admin API Routes
+app.post('/api/admin/jobs', (req, res) => {
+  const { title, department, category, location, qualification, posts, last_date, application_link } = req.body;
+  
+  if (!title || !department || !category || !last_date || !application_link) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+  
+  db.run(`INSERT INTO jobs (title, department, category, location, qualification, posts, last_date, application_link) 
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    [title, department, category, location, qualification, posts, last_date, application_link],
+    function(err) {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      res.json({ id: this.lastID, message: 'Job added successfully' });
+    });
+});
+
+app.delete('/api/admin/jobs/:id', (req, res) => {
+  const { id } = req.params;
+  
+  db.run('DELETE FROM jobs WHERE id = ?', [id], function(err) {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    
+    if (this.changes === 0) {
+      res.status(404).json({ error: 'Job not found' });
+      return;
+    }
+    
+    res.json({ message: 'Job deleted successfully' });
+  });
+});
+
+app.post('/api/admin/results', (req, res) => {
+  const { title, exam_name, result_link, published_date } = req.body;
+  
+  if (!title || !exam_name || !result_link || !published_date) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+  
+  db.run(`INSERT INTO results (title, exam_name, result_link, published_date) 
+          VALUES (?, ?, ?, ?)`,
+    [title, exam_name, result_link, published_date],
+    function(err) {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      res.json({ id: this.lastID, message: 'Result added successfully' });
+    });
+});
+
+app.post('/api/admin/admit-cards', (req, res) => {
+  const { title, exam_name, download_link, exam_date } = req.body;
+  
+  if (!title || !exam_name || !download_link || !exam_date) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+  
+  db.run(`INSERT INTO admit_cards (title, exam_name, download_link, exam_date) 
+          VALUES (?, ?, ?, ?)`,
+    [title, exam_name, download_link, exam_date],
+    function(err) {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      res.json({ id: this.lastID, message: 'Admit card added successfully' });
+    });
+});
+
+app.post('/api/admin/answer-keys', (req, res) => {
+  const { title, exam_name, download_link, published_date } = req.body;
+  
+  if (!title || !exam_name || !download_link || !published_date) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+  
+  db.run(`INSERT INTO answer_keys (title, exam_name, download_link, published_date) 
+          VALUES (?, ?, ?, ?)`,
+    [title, exam_name, download_link, published_date],
+    function(err) {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      res.json({ id: this.lastID, message: 'Answer key added successfully' });
+    });
+});
+
 // Serve main pages
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -385,6 +480,10 @@ app.get('/admit-cards', (req, res) => {
 
 app.get('/answer-keys', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'answer-keys.html'));
+});
+
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
 // 404 handler
