@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SarkariJob - Latest Government Jobs, Exam Results, Admit Cards & Answer Keys. Find Central Govt, State Govt, Railway, Banking and other Sarkari Jobs.">
+    <meta name="keywords" content="sarkari job, government jobs, sarkari result, exam results, admit card, answer key, railway jobs, banking jobs">
+    <meta name="author" content="SarkariJob">
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="SarkariJob - Latest Government Jobs Portal">
+    <meta property="og:description" content="Find latest government jobs, exam results, admit cards and answer keys. Apply for Central Govt, State Govt, Railway, Banking jobs.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sarkarijob.com">
+    
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SarkariJob - Latest Government Jobs Portal">
+    <meta name="twitter:description" content="Find latest government jobs, exam results, admit cards and answer keys.">
+    
+    <title>SarkariJob - Latest Government Jobs, Results & Admit Cards</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Website",
+        "name": "SarkariJob",
+        "description": "Latest Government Jobs Portal",
+        "url": "https://sarkarijob.com"
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="/" class="logo">
+                        <h1>SarkariJob</h1>
+                        <span class="tagline">Government Jobs Portal</span>
+                    </a>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="/" class="nav-link active">Home</a></li>
+                    <li><a href="/jobs" class="nav-link">Latest Jobs</a></li>
+                    <li><a href="/results" class="nav-link">Results</a></li>
+                    <li><a href="/admit-cards" class="nav-link">Admit Cards</a></li>
+                    <li><a href="/answer-keys" class="nav-link">Answer Keys</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <h2>Find Your Dream Government Job</h2>
+                <form class="search-form" id="searchForm">
+                    <div class="search-input-group">
+                        <input type="text" id="searchInput" placeholder="Search jobs, departments, or locations..." class="search-input">
+                        <select id="categoryFilter" class="category-select">
+                            <option value="">All Categories</option>
+                            <option value="Central Government">Central Government</option>
+                            <option value="State Government">State Government</option>
+                            <option value="Railway">Railway</option>
+                            <option value="Banking">Banking</option>
+                            <option value="Defence">Defence</option>
+                            <option value="Teaching">Teaching</option>
+                            <option value="Police">Police</option>
+                        </select>
+                        <button type="submit" class="search-btn">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Quick Navigation -->
+            <section class="quick-nav">
+                <h2 class="section-title">Quick Access</h2>
+                <div class="quick-nav-grid">
+                    <a href="/jobs" class="quick-nav-item">
+                        <div class="quick-nav-icon">📋</div>
+                        <h3>Latest Jobs</h3>
+                        <p>Find newest government job postings</p>
+                    </a>
+                    <a href="/results" class="quick-nav-item">
+                        <div class="quick-nav-icon">📊</div>
+                        <h3>Exam Results</h3>
+                        <p>Check your exam results and merit lists</p>
+                    </a>
+                    <a href="/admit-cards" class="quick-nav-item">
+                        <div class="quick-nav-icon">🎫</div>
+                        <h3>Admit Cards</h3>
+                        <p>Download hall tickets and admit cards</p>
+                    </a>
+                    <a href="/answer-keys" class="quick-nav-item">
+                        <div class="quick-nav-icon">🔑</div>
+                        <h3>Answer Keys</h3>
+                        <p>View answer keys and solutions</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Latest Jobs Section -->
+            <section class="latest-jobs">
+                <div class="section-header">
+                    <h2 class="section-title">Latest Government Jobs</h2>
+                    <a href="/jobs" class="view-all-btn">View All Jobs</a>
+                </div>
+                <div class="jobs-grid" id="latestJobs">
+                    <div class="loading">Loading latest jobs...</div>
+                </div>
+            </section>
+
+            <!-- Recent Results Section -->
+            <section class="recent-results">
+                <div class="section-header">
+                    <h2 class="section-title">Recent Exam Results</h2>
+                    <a href="/results" class="view-all-btn">View All Results</a>
+                </div>
+                <div class="results-list" id="recentResults">
+                    <div class="loading">Loading recent results...</div>
+                </div>
+            </section>
+
+            <!-- Categories Section -->
+            <section class="categories">
+                <h2 class="section-title">Browse by Category</h2>
+                <div class="categories-grid">
+                    <div class="category-item" data-category="Central Government">
+                        <h3>Central Government</h3>
+                        <p>SSC, UPSC, Railway, Banking and more</p>
+                        <span class="job-count" id="centralCount">0 Jobs</span>
+                    </div>
+                    <div class="category-item" data-category="State Government">
+                        <h3>State Government</h3>
+                        <p>State PSC, State Police, Teachers</p>
+                        <span class="job-count" id="stateCount">0 Jobs</span>
+                    </div>
+                    <div class="category-item" data-category="Railway">
+                        <h3>Railway Jobs</h3>
+                        <p>RRB, Railway Recruitment Board</p>
+                        <span class="job-count" id="railwayCount">0 Jobs</span>
+                    </div>
+                    <div class="category-item" data-category="Banking">
+                        <h3>Banking Jobs</h3>
+                        <p>IBPS, SBI, Bank PO, Clerk</p>
+                        <span class="job-count" id="bankingCount">0 Jobs</span>
+                    </div>
+                    <div class="category-item" data-category="Defence">
+                        <h3>Defence Jobs</h3>
+                        <p>Army, Navy, Air Force recruitment</p>
+                        <span class="job-count" id="defenceCount">0 Jobs</span>
+                    </div>
+                    <div class="category-item" data-category="Teaching">
+                        <h3>Teaching Jobs</h3>
+                        <p>Teacher recruitment, Professor posts</p>
+                        <span class="job-count" id="teachingCount">0 Jobs</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SarkariJob</h3>
+                    <p>Your trusted source for latest government jobs, results, and admit cards. Stay updated with all sarkari job notifications.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook">📘</a>
+                        <a href="#" class="social-link" title="Twitter">🐦</a>
+                        <a href="#" class="social-link" title="Telegram">✈️</a>
+                        <a href="#" class="social-link" title="WhatsApp">💬</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/jobs">Latest Jobs</a></li>
+                        <li><a href="/results">Exam Results</a></li>
+                        <li><a href="/admit-cards">Admit Cards</a></li>
+                        <li><a href="/answer-keys">Answer Keys</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="/jobs?category=Central%20Government">Central Govt</a></li>
+                        <li><a href="/jobs?category=State%20Government">State Govt</a></li>
+                        <li><a href="/jobs?category=Railway">Railway</a></li>
+                        <li><a href="/jobs?category=Banking">Banking</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📧 contact@sarkarijob.com</p>
+                    <p>📱 +91-9876543210</p>
+                    <p>🌐 www.sarkarijob.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SarkariJob. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/js/app.js"></script>
+    <script src="/js/notifications.js"></script>
+</body>
+</html>

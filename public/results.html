@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Latest Government Exam Results - Check SSC, Railway, Banking, UPSC and other Sarkari exam results and merit lists.">
+    <title>Exam Results - SarkariJob Portal</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="/" class="logo">
+                        <h1>SarkariJob</h1>
+                        <span class="tagline">Government Jobs Portal</span>
+                    </a>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/jobs" class="nav-link">Latest Jobs</a></li>
+                    <li><a href="/results" class="nav-link active">Results</a></li>
+                    <li><a href="/admit-cards" class="nav-link">Admit Cards</a></li>
+                    <li><a href="/answer-keys" class="nav-link">Answer Keys</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <section class="breadcrumbs">
+        <div class="container">
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb-list">
+                    <li><a href="/">Home</a></li>
+                    <li>Exam Results</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h1>Latest Exam Results</h1>
+            <p class="page-description">Check your government exam results, merit lists, and scorecards. Find results for SSC, Railway, Banking, UPSC, and other competitive examinations.</p>
+            
+            <div class="results-container" id="resultsContainer">
+                <div class="loading">Loading exam results...</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SarkariJob</h3>
+                    <p>Your trusted source for latest government jobs, results, and admit cards.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/jobs">Latest Jobs</a></li>
+                        <li><a href="/results">Exam Results</a></li>
+                        <li><a href="/admit-cards">Admit Cards</a></li>
+                        <li><a href="/answer-keys">Answer Keys</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SarkariJob. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const container = document.getElementById('resultsContainer');
+            try {
+                const response = await fetch('/api/results?limit=50');
+                const results = await response.json();
+                
+                if (results.length === 0) {
+                    container.innerHTML = '<p class="no-data">No results available at the moment.</p>';
+                    return;
+                }
+                
+                container.innerHTML = results.map(result => {
+                    const publishedDate = new Date(result.published_date).toLocaleDateString();
+                    return `
+                        <div class="result-item">
+                            <h3 class="result-title">${result.title}</h3>
+                            <div class="result-exam">${result.exam_name}</div>
+                            <div class="result-actions">
+                                <div class="result-date">Published: ${publishedDate}</div>
+                                <a href="${result.result_link}" class="download-btn" target="_blank" rel="noopener">
+                                    View Result
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                container.innerHTML = '<p class="error">Failed to load results.</p>';
+            }
+        });
+    </script>
+</body>
+</html>

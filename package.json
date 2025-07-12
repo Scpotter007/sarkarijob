@@ -1,0 +1,29 @@
+{
+  "name": "sarkarijob",
+  "version": "1.0.0",
+  "description": "Modern Government Job Portal - SarkariJob.com",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "government",
+    "jobs",
+    "sarkari",
+    "exam",
+    "results",
+    "admit card"
+  ],
+  "author": "SarkariJob Team",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.8.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.5.1",
+    "helmet": "^8.1.0",
+    "sqlite3": "^5.1.7"
+  }
+}
